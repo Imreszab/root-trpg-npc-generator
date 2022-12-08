@@ -1,4 +1,6 @@
-﻿namespace RootNpcBackend.Modells
+﻿
+
+namespace RootNpcBackend.Modells
 {
     public class Npc
     {

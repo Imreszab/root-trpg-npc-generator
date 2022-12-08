@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RootNpcBackend.Modells;
+using RootNpcBackend.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +10,15 @@ namespace RootNpcBackend.Controllers
     [ApiController]
     public class NpcController : ControllerBase
     {
-        // GET: api/<ValuesController>
+        private GenerateNpcService _generateNpcService = new GenerateNpcService();
+        
+        [Route("generate/random")]
         [HttpGet]
-        public IEnumerable<string> Get()
+        public Npc GenerateRandomNpc()
         {
-            return new string[] { "value1", "value2" };
+            Npc generatedNpc = _generateNpcService.GenerateRandomNpc();
+
+            return generatedNpc;
         }
 
         // GET api/<ValuesController>/5
