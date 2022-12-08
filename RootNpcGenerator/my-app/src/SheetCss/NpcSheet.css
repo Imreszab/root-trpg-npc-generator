@@ -20,6 +20,11 @@
     grid-template-columns: auto auto;
     padding: auto;
 }
+
+.grid-container-sheet{
+    display:grid;
+    grid-template-columns: auto 25%;
+}
 .grid-Column{
     display:grid;
     grid-template-rows: auto auto;

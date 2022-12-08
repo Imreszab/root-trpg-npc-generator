@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../SheetCss/NpcSheet.css";
 import BasicInfoSheet from "./BasicInfoSheet";
 import StatSheet from "./StatSheet";
@@ -6,8 +6,15 @@ import EquipmentSheet from "./EquipmentSheet";
 import TrackerSheet from "./TrackerSheet";
 import { Weapon, Armor } from "./Types";
 import { weapons, armors } from "./Items";
+import PageMenu from "../SidebarComponents/PageMenu";
 
 const NpcSheet = () => {
+	const [generate, setGenerate] = useState<boolean>(true);
+
+	const handleGenerate = () => {
+		setGenerate(!generate);
+	};
+
 	const randomWeapon: Weapon =
 		weapons[Math.floor(Math.random() * weapons.length)];
 	const randomArmor: Armor = armors[Math.floor(Math.random() * armors.length)];
@@ -21,7 +28,7 @@ const NpcSheet = () => {
 	const randomMoral: number = getRandomStat();
 
 	return (
-		<div className="">
+		<div className="grid-container-sheet">
 			<div className="grid-container sheet">
 				<TrackerSheet
 					weaponExhaustion={randomWeapon.exhaustion}
@@ -47,6 +54,7 @@ const NpcSheet = () => {
 					<BasicInfoSheet />
 				</div>
 			</div>
+			<PageMenu handleGenerate={handleGenerate} />
 		</div>
 	);
 };

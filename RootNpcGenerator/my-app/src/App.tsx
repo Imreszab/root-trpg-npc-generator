@@ -16,7 +16,6 @@ function App() {
 		<div className="App app-grid-container">
 			<Sidebar />
 			<NpcSheet />
-			<PageMenu handleGenerate={handleGenerate} />
 		</div>
 	);
 }
