@@ -1,0 +1,19 @@
+.sidebar-container{
+    background-color: #745D47;
+}
+.sidebar-title{
+    padding-top: 15%;
+    padding-bottom: 15%;
+    background-color: #607533;
+    align-content: center;
+    font-size: 15pt;
+}
+.generate-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    padding: 15px 32px;
+}
