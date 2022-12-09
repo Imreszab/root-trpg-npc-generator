@@ -1,13 +1,26 @@
+@font-face {
+    font-family: 'breathe_fireregular';
+    src: url('/public/fonts/webfontkit-20221209-075028/breathefire-65pg-webfont.woff2'),
+         url('/public/fonts/webfontkit-20221209-075028/breathefire-65pg-webfont.woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 .sidebar-container{
     background-color: #745D47;
+    opacity: 0.6;
+    size: 10px;
 }
 .sidebar-title{
     padding-top: 15%;
     padding-bottom: 15%;
-    background-color: #607533;
-    text-align: center;
+    background-image: url('/public/navbar.jpg');
+    display: flex;
+    flex:0em;
     align-content: center;
     font-size: 15pt;
+    opacity: 1;
+    font-family: breathe_fireregular;
 }
 .sub-btn{
     display: flex;
@@ -27,6 +40,7 @@
     margin-top: 2%;
     margin-bottom: 1%;
     padding: 15px 32px;
+    opacity: 1;
 }
 .navbar{
     text-align: center;
