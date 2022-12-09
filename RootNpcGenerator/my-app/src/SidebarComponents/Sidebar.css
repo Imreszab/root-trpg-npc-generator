@@ -5,10 +5,11 @@
     padding-top: 15%;
     padding-bottom: 15%;
     background-color: #607533;
+    text-align: center;
     align-content: center;
     font-size: 15pt;
 }
-.generate-btn{
+.sub-btn{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,4 +17,17 @@
     margin-top: 2%;
     margin-bottom: 1%;
     padding: 15px 32px;
+}
+
+.navbar-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    padding: 15px 32px;
+}
+.navbar{
+    text-align: center;
 }

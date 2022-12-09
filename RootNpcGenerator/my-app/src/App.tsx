@@ -1,21 +1,21 @@
 import React from "react";
-import NpcSheet from "./SheetComponents/NpcSheet";
-import Sidebar from "./SidebarComponents/Sidebar";
+import RandomNpcSheet from "./SheetComponents/RandomNpcSheet";
 import "./App.css";
-import { useState } from "react";
-import PageMenu from "./SidebarComponents/PageMenu";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LoadNpcSheet from "./SheetComponents/LoadNpcSheet";
+import Layout from "./Layout";
 
 function App() {
-	const [generate, setGenerate] = useState<boolean>(true);
-
-	const handleGenerate = () => {
-		setGenerate(!generate);
-	};
-
 	return (
-		<div className="App app-grid-container">
-			<Sidebar />
-			<NpcSheet />
+		<div className="App">
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Layout />}>
+						<Route path="/" element={<RandomNpcSheet />} />
+						<Route path="/load-npc" element={<LoadNpcSheet />} />
+					</Route>
+				</Routes>
+			</BrowserRouter>
 		</div>
 	);
 }

@@ -1,13 +1,13 @@
 import React from "react";
 
-type ContentProps = { handleGenerate: any };
+type ContentProps = { handleGenerate: Function; pageName: string };
 
-const PageMenu = ({ handleGenerate }: ContentProps) => {
+const PageMenu = ({ handleGenerate, pageName }: ContentProps) => {
 	return (
 		<div className="sidebar-container">
-			<div className="sidebar-title"> Name Of The Page you are on</div>
+			<div className="sidebar-title"> {pageName}</div>
 			<div className="navbar">
-				<button className="generate-btn" onClick={() => handleGenerate()}>
+				<button className="sub-btn" onClick={() => handleGenerate()}>
 					Generate New Npc
 				</button>
 			</div>

@@ -8,7 +8,9 @@ import { Weapon, Armor } from "./Types";
 import { weapons, armors } from "./Items";
 import PageMenu from "../SidebarComponents/PageMenu";
 
-const NpcSheet = () => {
+type ContentProps = { pageName: string };
+
+const NpcSheet = ({ pageName }: ContentProps) => {
 	const [generate, setGenerate] = useState<boolean>(true);
 
 	const handleGenerate = () => {
@@ -54,7 +56,7 @@ const NpcSheet = () => {
 					<BasicInfoSheet />
 				</div>
 			</div>
-			<PageMenu handleGenerate={handleGenerate} />
+			<PageMenu handleGenerate={handleGenerate} pageName={pageName} />
 		</div>
 	);
 };
