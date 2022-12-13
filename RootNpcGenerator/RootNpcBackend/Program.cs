@@ -1,3 +1,6 @@
+using RootNpcBackend.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<RootContext>(options =>
+{
+    var connectionstring = builder.Configuration.GetConnectionString("BadcampContext");
+    options.UseSqlServer(connectionstring);
+});
+builder.Services.AddTransient<RootNpcSeed>();
 
 var app = builder.Build();
 

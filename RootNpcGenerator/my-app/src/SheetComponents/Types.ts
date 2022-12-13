@@ -34,7 +34,9 @@ export enum Faction {
     Marquisate = "Marquisate",
     EyrieDynasty = "Eyrie Dynasty",
     WAlliance = "Woodland Alliance",
-    Local = "Local Denizen"
+    Local = "Local Denizen",
+    Cult = "Lizard Cult"
+    
 }
 
 export enum Gender {
@@ -52,7 +54,7 @@ export enum Race {
 }
 export enum Age {
     Child = "Child",
-    Young = "Young",
+    YoungAdult = "YoungAdult",
     MiddleAge = "MiddleAge",
     Elder = "Elder"
 }

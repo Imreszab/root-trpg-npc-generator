@@ -1,4 +1,4 @@
-﻿using RootNpcBackend.Modells;
+﻿using RootNpcBackend.Models;
 
 namespace RootNpcBackend.Services
 {
@@ -9,7 +9,7 @@ namespace RootNpcBackend.Services
             var random = new Random();
             Npc npc = new Npc();
             npc.Name = "Karalabé";
-            npc.Race = GetRandomEnum<RaceEnum>(random);
+          //  npc.Race = GetRandomEnum<Race>(random);
 
             return npc;
         }
