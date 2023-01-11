@@ -1,26 +1,46 @@
-﻿using RootNpcBackend.Models;
+﻿using Newtonsoft.Json;
+using RootNpcBackend.Data;
+using RootNpcBackend.Models;
+using System.Linq;
 
 namespace RootNpcBackend.Services
 {
     public class GenerateNpcService
     {
-        public Npc GenerateRandomNpc()
+        private Random _random= new Random();
+        public Npc GenerateRandomNpc(RootContext context)
         {
-            var random = new Random();
+
+            //var randomRace = _random.Next();
+           //ar random = new Random();
             Npc npc = new Npc();
-            npc.Name = "Karalabé";
-          //  npc.Race = GetRandomEnum<Race>(random);
+            npc.Name = GetNameFromApi();
+            npc.Race = context.Races
+                              .OrderBy(r => Guid.NewGuid()).Take(1).FirstOrDefault();
+            npc.Age = context.Ages
+                              .OrderBy(r => Guid.NewGuid()).Take(1).FirstOrDefault();
+            npc.Gender = context.Genders
+                                .OrderBy(r => Guid.NewGuid()).Take(1).FirstOrDefault();
+            npc.Faction = context.Factions
+                                .OrderBy(r => Guid.NewGuid()).Take(1).FirstOrDefault();
+            npc.Weapon = context.Weapons
+                                .OrderBy(r => Guid.NewGuid()).Take(1).FirstOrDefault();
+            npc.Armor = context.Armors
+                                .OrderBy(r => Guid.NewGuid()).Take(1).FirstOrDefault();
+            npc.Injury = _random.Next(5);
+            npc.Exhaustion = _random.Next(5);
+            npc.Moral = _random.Next(5);
 
             return npc;
         }
 
-        private T GetRandomEnum<T>(Random random ) where T:Enum
+        public string GetNameFromApi()
         {
-            
-            Array values = Enum.GetValues(typeof(T));
-            T randomEnum = (T)values.GetValue(random.Next(values.Length));
+            var url = "https://names.drycodes.com/1?format=json";
+            var data = ApiHelperService.GetDataFormApi<string>(url).Result;
 
-            return randomEnum;
+            return data;
         }
+
     }
 }

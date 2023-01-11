@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using RootNpcBackend.Data;
 using RootNpcBackend.Models;
 using RootNpcBackend.Services;
 
@@ -11,15 +15,22 @@ namespace RootNpcBackend.Controllers
     public class NpcController : ControllerBase
     {
         private GenerateNpcService _generateNpcService = new GenerateNpcService();
+        private RootContext _context;
+
+        public NpcController(RootContext context)
+        {
+            _context = context;
+        }
         
         [Route("generate/random")]
         [HttpGet]
         public Npc GenerateRandomNpc()
         {
-            Npc generatedNpc = _generateNpcService.GenerateRandomNpc();
+            Npc generatedNpc = _generateNpcService.GenerateRandomNpc(_context);
 
             return generatedNpc;
         }
+
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
