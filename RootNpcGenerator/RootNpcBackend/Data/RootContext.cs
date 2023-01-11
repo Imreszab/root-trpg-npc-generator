@@ -1,5 +1,7 @@
 ﻿using RootNpcBackend.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+//using System.Data.Entity;
 
 namespace RootNpcBackend.Data
 {
@@ -15,6 +17,5 @@ namespace RootNpcBackend.Data
         public DbSet<Race> Races { get; set; }
         public DbSet<Armor> Armors { get; set; }
         public DbSet<Weapon> Weapons { get; set; }
-        
     }
 }

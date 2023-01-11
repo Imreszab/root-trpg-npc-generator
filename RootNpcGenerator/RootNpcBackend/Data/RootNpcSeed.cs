@@ -14,7 +14,7 @@ namespace RootNpcBackend.Data
 
         public RootNpcSeed(RootContext context)
         {
-            this._context = context;
+           _context = context;
         }
 
         public void Seed()
@@ -215,6 +215,7 @@ namespace RootNpcBackend.Data
 
                  }
                 ) ;
+                _context.SaveChanges();
             }
         }
 
