@@ -27,9 +27,9 @@ namespace RootNpcBackend.Services
                                 .OrderBy(r => Guid.NewGuid()).Take(1).FirstOrDefault();
             npc.Armor = context.Armors
                                 .OrderBy(r => Guid.NewGuid()).Take(1).FirstOrDefault();
-            npc.Injury = _random.Next(5);
-            npc.Exhaustion = _random.Next(5);
-            npc.Moral = _random.Next(5);
+            npc.Injury = _random.Next(4)+1;
+            npc.Exhaustion = _random.Next(4)+1;
+            npc.Moral = _random.Next(4)+1;
 
             return npc;
         }
