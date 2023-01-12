@@ -43,7 +43,7 @@ export type NData = {
     name : string
 }
 
-/*export type Npc = {
+export type Npc = {
     name: string,
     race: NData,
     age : NData,
@@ -54,17 +54,19 @@ export type NData = {
     injury : number,
     exhaustion : number,
     moral: number
-}*/
+}
 
-export type Npc = {
+/*export type Npc = {
     npcBase : NpcBase,
     weapon : Weapon,
     armor : Armor
     npcStats : NpcStats
     
-}
+}*/
 
-export const starterNpc : Npc =
+//base npc to load on start
+
+/*export const starterNpc : Npc =
     {
         npcBase :{
         name: "Béla",
@@ -101,7 +103,44 @@ export const starterNpc : Npc =
             exhaustion: 3,
             moral: 4
         }
-      }
+      }*/
+
+export const starterNpc : Npc = {
+    name: "Béla",
+    race: {
+      id: 1,
+      name: "Rabbit"
+    },
+    age: {
+      id: 3,
+      name: "MiddleAge"
+    },
+    gender: {
+      id: 3,
+      name: "Other"
+    },
+    faction: {
+      id: 4,
+      name: "Local Denizen"
+    },
+    weapon: {
+      id: 4,
+      name: "Greatsword",
+      injury: 2,
+      exhaustion: 0
+    },
+    armor: {
+      id: 3,
+      name: "Leather Vest",
+      wear: 2
+    },
+    injury: 1,
+    exhaustion: 1,
+    moral: 2
+  }
+
+// ContentProps for components
+
 export type StatProps = {
 	stats: NpcStats,
 	wear: number,
@@ -109,7 +148,6 @@ export type StatProps = {
 export type SheetProps = {
 	pageName: string,
 	npc: Npc,
-	setNpc: React.Dispatch<React.SetStateAction<Npc>>,
 	handleGenerate: Function,
 };
 
