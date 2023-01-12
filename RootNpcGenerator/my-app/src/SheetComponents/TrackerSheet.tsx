@@ -1,22 +1,7 @@
 import React from "react";
+import { TrackerProps, NpcTracker } from "./Types";
 
-type ContentProps = {
-	weaponExhaustion: number;
-	weaponInjury: number;
-	wear: number;
-	randomInjury: number;
-	randomExhaustion: number;
-	randomMoral: number;
-};
-
-const TrackerSheet = ({
-	weaponExhaustion,
-	weaponInjury,
-	wear,
-	randomInjury,
-	randomExhaustion,
-	randomMoral,
-}: ContentProps) => {
+const TrackerSheet = ({ tracker }: TrackerProps) => {
 	const drawTracker = (stat: number): string => {
 		let tracker: string = "";
 		if (stat === 0) {
@@ -33,18 +18,18 @@ const TrackerSheet = ({
 		<div className="card tracker">
 			<h2 className="card-title"> Stat Tracker</h2>
 			<label>Injury: </label>
-			<p>{drawTracker(randomInjury)}</p>
+			<p>{drawTracker(tracker.injury)}</p>
 			<label>Exhaustion: </label>
-			<p>{drawTracker(randomExhaustion)}</p>
+			<p>{drawTracker(tracker.exhaustion)}</p>
 			<label>Wear: </label>
-			<p>{drawTracker(wear)}</p>
+			<p>{drawTracker(tracker.wear)}</p>
 			<label>Moral: </label>
-			<p>{drawTracker(randomMoral)}</p>
+			<p>{drawTracker(tracker.moral)}</p>
 			<h3>Damage</h3>
 			<label>Injury: </label>
-			<span>{weaponInjury}</span> <br />
+			<span>{tracker.damageInjury}</span> <br />
 			<label>Exhaustion: </label>
-			<span>{weaponExhaustion}</span>
+			<span>{tracker.damageExhaustion}</span>
 		</div>
 	);
 };

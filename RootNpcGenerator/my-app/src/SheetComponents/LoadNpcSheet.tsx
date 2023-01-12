@@ -3,11 +3,12 @@ import NpcSheet from "./NpcSheet";
 
 const LoadNpcSheet = () => {
 	let pageName: string = "Load Npc";
-	return (
+	/*return (
 		<div>
 			<NpcSheet pageName={pageName} />
 		</div>
-	);
+	);*/
+	return <></>;
 };
 
 export default LoadNpcSheet;

@@ -1,32 +1,21 @@
 import React from "react";
+import { StatProps } from "./Types";
 
-type ContentProps = {
-	wear: number;
-	randomInjury: number;
-	randomExhaustion: number;
-	randomMoral: number;
-};
-
-const StatSheet = ({
-	wear,
-	randomInjury,
-	randomExhaustion,
-	randomMoral,
-}: ContentProps) => {
+const StatSheet = ({ stats, wear }: StatProps) => {
 	return (
 		<div className="card stats">
 			<h2 className="card-title"> Stats</h2>
 			<label>Injury: </label>
-			<span>{randomInjury}</span>
+			<span>{stats.injury}</span>
 			<br />
 			<label>Exhaustion: </label>
-			<span>{randomExhaustion}</span>
+			<span>{stats.exhaustion}</span>
 			<br />
 			<label>Wear: </label>
 			<span>{wear}</span>
 			<br />
 			<label>Moral: </label>
-			<span>{randomMoral}</span>
+			<span>{stats.moral}</span>
 			<br />
 		</div>
 	);

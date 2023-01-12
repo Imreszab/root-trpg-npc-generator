@@ -4,56 +4,30 @@ import BasicInfoSheet from "./BasicInfoSheet";
 import StatSheet from "./StatSheet";
 import EquipmentSheet from "./EquipmentSheet";
 import TrackerSheet from "./TrackerSheet";
-import { Weapon, Armor } from "./Types";
-import { weapons, armors } from "./Items";
+import { SheetProps, Npc, NpcTracker } from "./Types";
+
 import PageMenu from "../SidebarComponents/PageMenu";
 
-type ContentProps = { pageName: string };
-
-const NpcSheet = ({ pageName }: ContentProps) => {
-	const [generate, setGenerate] = useState<boolean>(true);
-
-	const handleGenerate = () => {
-		setGenerate(!generate);
+const NpcSheet = ({ pageName, npc, setNpc, handleGenerate }: SheetProps) => {
+	let tracker: NpcTracker = {
+		injury: npc.npcStats.injury,
+		exhaustion: npc.npcStats.exhaustion,
+		wear: npc.armor.wear,
+		moral: npc.npcStats.moral,
+		damageInjury: npc.weapon.injury,
+		damageExhaustion: npc.weapon.exhaustion,
 	};
-
-	const randomWeapon: Weapon =
-		weapons[Math.floor(Math.random() * weapons.length)];
-	const randomArmor: Armor = armors[Math.floor(Math.random() * armors.length)];
-
-	const getRandomStat = (): number => {
-		return Math.floor(Math.random() * 4) + 1;
-	};
-
-	const randomInjury: number = getRandomStat();
-	const randomExhaustion: number = getRandomStat();
-	const randomMoral: number = getRandomStat();
 
 	return (
 		<div className="grid-container-sheet">
 			<div className="grid-container sheet">
-				<TrackerSheet
-					weaponExhaustion={randomWeapon.exhaustion}
-					weaponInjury={randomWeapon.injury}
-					wear={randomArmor.wear}
-					randomInjury={randomInjury}
-					randomExhaustion={randomExhaustion}
-					randomMoral={randomMoral}
-				/>
+				<TrackerSheet tracker={tracker} />
 				<div className="grid-Column">
 					<div className="grid-column-row">
-						<StatSheet
-							wear={randomArmor.wear}
-							randomInjury={randomInjury}
-							randomExhaustion={randomExhaustion}
-							randomMoral={randomMoral}
-						/>
-						<EquipmentSheet
-							weaponName={randomWeapon.name}
-							armorName={randomArmor.name}
-						/>
+						<StatSheet stats={npc.npcStats} wear={npc.armor.wear} />
+						<EquipmentSheet weapon={npc.weapon} armor={npc.armor} />
 					</div>
-					<BasicInfoSheet />
+					<BasicInfoSheet basicInfo={npc.npcBase} />
 				</div>
 			</div>
 			<PageMenu handleGenerate={handleGenerate} pageName={pageName} />
