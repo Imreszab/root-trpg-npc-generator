@@ -1,5 +1,5 @@
 import React from "react";
-import { TrackerProps, NpcTracker } from "./Types";
+import { TrackerProps } from "./Types";
 
 const TrackerSheet = ({ tracker }: TrackerProps) => {
 	const drawTracker = (stat: number): string => {

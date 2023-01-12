@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useRef } from "react";
 import NpcSheet from "./NpcSheet";
 import { useEffect, useState } from "react";
 import { Npc, NpcBase, starterNpc } from "./Types";
 import { getNameOfDeclaration } from "typescript";
 
 const RandomNpcSheet = () => {
-	const [npc, setNpc] = useState<Npc>(starterNpc);
+	const npc = useRef<Npc>(starterNpc);
+	const [generate, setGenerate] = useState<boolean>(false);
 	let pageName: string = "Generate Npc";
 
-	const handleGenerate = () => {};
+	const handleGenerate = () => {
+		setGenerate(!generate);
+	};
 
 	useEffect(() => {
 		const getName = async () => {
@@ -21,8 +24,8 @@ const RandomNpcSheet = () => {
 					},
 				});
 				if (!response.ok) throw Error("Did not receive expected data");
-				setNpc(await response.json());
-				console.log(npc);
+				npc.current = await response.json();
+				console.log(npc.current);
 			} catch (err) {
 				console.log(err);
 			}
@@ -30,14 +33,13 @@ const RandomNpcSheet = () => {
 		setTimeout(() => {
 			(async () => await getName())();
 		}, 2000);
-	}, []);
+	}, [handleGenerate]);
 
 	return (
 		<div>
 			<NpcSheet
 				pageName={pageName}
-				npc={npc}
-				setNpc={setNpc}
+				npc={npc.current}
 				handleGenerate={handleGenerate}
 			/>
 		</div>
