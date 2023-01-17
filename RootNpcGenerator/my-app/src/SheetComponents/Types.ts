@@ -149,9 +149,10 @@ export type SheetProps = {
 	pageName: string,
 	npc: Npc,
 	handleGenerate: Function,
+    handleSave: Function,
 };
 
 export type TrackerProps = {
 	tracker: NpcTracker
 };
-export type BasicInfoProps = { basicInfo: NpcBase };
+export type BasicInfoProps = { basicInfo: NpcBase, handleEdit : Function };
