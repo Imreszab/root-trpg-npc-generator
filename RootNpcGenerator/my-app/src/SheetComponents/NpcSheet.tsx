@@ -8,7 +8,12 @@ import { SheetProps, Npc, NpcTracker, NpcStats, NpcBase } from "./Types";
 
 import PageMenu from "../SidebarComponents/PageMenu";
 
-const NpcSheet = ({ pageName, npc, handleGenerate }: SheetProps) => {
+const NpcSheet = ({
+	pageName,
+	npc,
+	handleGenerate,
+	handleSave,
+}: SheetProps) => {
 	let npcBase: NpcBase = {
 		name: npc.name,
 		race: npc.race,
@@ -30,6 +35,29 @@ const NpcSheet = ({ pageName, npc, handleGenerate }: SheetProps) => {
 		moral: npc.moral,
 	};
 
+	const [editInput, setEditInput] = useState<boolean>(false);
+
+	const handleEdit = (
+		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+		data: string,
+		type: string
+	) => {
+		let span = e.target;
+		let text: string = data;
+
+		let new_text = prompt("Change value", text);
+
+		if (new_text != null) {
+			saveEdit(new_text, type);
+			setEditInput(!editInput);
+		}
+	};
+
+	const saveEdit = (text: string, type: string) => {
+		npc.name = text;
+		console.log(Object.keys(npc));
+	};
+
 	return (
 		<div className="grid-container-sheet">
 			<div className="grid-container sheet">
@@ -39,10 +67,14 @@ const NpcSheet = ({ pageName, npc, handleGenerate }: SheetProps) => {
 						<StatSheet stats={npcStats} wear={npc.armor.wear} />
 						<EquipmentSheet weapon={npc.weapon} armor={npc.armor} />
 					</div>
-					<BasicInfoSheet basicInfo={npcBase} />
+					<BasicInfoSheet basicInfo={npcBase} handleEdit={handleEdit} />
 				</div>
 			</div>
-			<PageMenu handleGenerate={handleGenerate} pageName={pageName} />
+			<PageMenu
+				handleGenerate={handleGenerate}
+				pageName={pageName}
+				handleSave={handleSave}
+			/>
 		</div>
 	);
 };

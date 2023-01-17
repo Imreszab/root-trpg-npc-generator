@@ -2,13 +2,15 @@ import React from "react";
 import { useEffect, useRef } from "react";
 import { BasicInfoProps, NpcBase } from "./Types";
 
-const BasicInfoSheet = ({ basicInfo }: BasicInfoProps) => {
+const BasicInfoSheet = ({ basicInfo, handleEdit }: BasicInfoProps) => {
 	return (
 		<div className="card basic-info">
 			<h2 className="card-title"> Basic information</h2>
 
 			<label>Name: </label>
-			<span>{basicInfo.name}</span>
+			<span onClick={(e) => handleEdit(e, basicInfo.name, "name")}>
+				{basicInfo.name}
+			</span>
 			<br />
 			<label>Race: </label>
 			<span>{basicInfo.race.name}</span>
