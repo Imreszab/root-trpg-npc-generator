@@ -56,55 +56,6 @@ export type Npc = {
     moral: number
 }
 
-/*export type Npc = {
-    npcBase : NpcBase,
-    weapon : Weapon,
-    armor : Armor
-    npcStats : NpcStats
-    
-}*/
-
-//base npc to load on start
-
-/*export const starterNpc : Npc =
-    {
-        npcBase :{
-        name: "Béla",
-        race: {
-            id: 5,
-            name: "Racoon"
-        },
-        age: {
-            id: 4,
-            name: "Elder"
-        },
-            gender: {
-            id: 1,
-            name: "Male"
-        },
-        faction: {
-            id: 4,
-            name: "Local Denizen"
-        },
-    },
-        weapon: {
-            id: 4,
-            name: "Greatsword",
-            injury: 2,
-            exhaustion: 0
-        },
-        armor: {
-            id: 1,
-            name: "Cloak",
-            wear: 1
-        },
-        npcStats: {
-            injury: 3,
-            exhaustion: 3,
-            moral: 4
-        }
-      }*/
-
 export const starterNpc : Npc = {
     name: "Béla",
     race: {
@@ -144,6 +95,7 @@ export const starterNpc : Npc = {
 export type StatProps = {
 	stats: NpcStats,
 	wear: number,
+    handleEdit: Function
 };
 export type SheetProps = {
 	pageName: string,
