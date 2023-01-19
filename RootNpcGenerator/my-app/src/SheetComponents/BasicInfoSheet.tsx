@@ -8,21 +8,35 @@ const BasicInfoSheet = ({ basicInfo, handleEdit }: BasicInfoProps) => {
 			<h2 className="card-title"> Basic information</h2>
 
 			<label>Name: </label>
-			<span onClick={(e) => handleEdit(e, basicInfo.name, "name")}>
+			<span onClick={(e) => handleEdit(e, basicInfo.name, "name", "")}>
 				{basicInfo.name}
 			</span>
 			<br />
 			<label>Race: </label>
-			<span>{basicInfo.race.name}</span>
+			<span onClick={(e) => handleEdit(e, basicInfo.race.name, "race", "name")}>
+				{basicInfo.race.name}
+			</span>
 			<br />
 			<label>Age: </label>
-			<span>{basicInfo.age.name}</span>
+			<span onClick={(e) => handleEdit(e, basicInfo.age.name, "age", "name")}>
+				{basicInfo.age.name}
+			</span>
 			<br />
 			<label>Gender: </label>
-			<span>{basicInfo.gender.name}</span>
+			<span
+				onClick={(e) => handleEdit(e, basicInfo.gender.name, "gender", "name")}
+			>
+				{basicInfo.gender.name}
+			</span>
 			<br />
 			<label>Faction: </label>
-			<span>{basicInfo.faction.name}</span>
+			<span
+				onClick={(e) =>
+					handleEdit(e, basicInfo.faction.name, "faction", "name")
+				}
+			>
+				{basicInfo.faction.name}
+			</span>
 		</div>
 	);
 };

@@ -39,23 +39,45 @@ const NpcSheet = ({
 
 	const handleEdit = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-		data: string,
-		type: string
+		text: string,
+		typeName: string,
+		subName: string
 	) => {
-		let span = e.target;
-		let text: string = data;
+		let new_text: string | null = text;
 
-		let new_text = prompt("Change value", text);
+		new_text = prompt("Change value", text);
 
-		if (new_text != null) {
-			saveEdit(new_text, type);
-			setEditInput(!editInput);
+		if (
+			subName === "" &&
+			typeName !== "name" &&
+			new_text !== null &&
+			(+new_text >= 5 ||
+				+new_text <= 0 ||
+				!isNaN(parseFloat(new_text)) === false)
+		) {
+			new_text = prompt("Choose number between 1 and 4", text);
+		} else if (
+			typeName === "name" &&
+			new_text !== null &&
+			!isNaN(parseFloat(new_text)) === true
+		) {
+			new_text = prompt("Don't write a number pls!!!", text);
+		} else {
+			if (new_text != null) {
+				console.log(!isNaN(parseFloat(new_text)));
+				saveEdit(new_text, typeName, subName);
+				setEditInput(!editInput);
+			}
 		}
 	};
 
-	const saveEdit = (text: string, type: string) => {
-		npc.name = text;
-		console.log(Object.keys(npc));
+	const saveEdit = (text: string, typeName: string, subName: string) => {
+		if (subName === "") {
+			(npc as any)[typeName] = text;
+		} else {
+			(npc as any)[typeName][subName] = text;
+		}
+		console.log(npc);
 	};
 
 	return (
@@ -64,7 +86,11 @@ const NpcSheet = ({
 				<TrackerSheet tracker={tracker} />
 				<div className="grid-Column">
 					<div className="grid-column-row">
-						<StatSheet stats={npcStats} wear={npc.armor.wear} />
+						<StatSheet
+							stats={npcStats}
+							wear={npc.armor.wear}
+							handleEdit={handleEdit}
+						/>
 						<EquipmentSheet weapon={npc.weapon} armor={npc.armor} />
 					</div>
 					<BasicInfoSheet basicInfo={npcBase} handleEdit={handleEdit} />
