@@ -1,7 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Azure;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using RootNpcBackend.Data;
 using RootNpcBackend.Models;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace RootNpcBackend.Services
 {
@@ -14,6 +17,7 @@ namespace RootNpcBackend.Services
             //var randomRace = _random.Next();
            //ar random = new Random();
             Npc npc = new Npc();
+            npc.Id = 0;
             npc.Name = GetNameFromApi();
             npc.Race = context.Races
                               .OrderBy(r => Guid.NewGuid()).Take(1).FirstOrDefault();
@@ -40,6 +44,46 @@ namespace RootNpcBackend.Services
             var data = ApiHelperService.GetDataFormApi<string>(url).Result;
 
             return data;
+        }
+
+        public Response<Npc> SaveRandomNpc(RootContext context, Npc npc)
+        {
+             try {
+                 context.Npcs.Add(npc);
+                 context.SaveChanges();
+                var savedNpc = npc; //context.Npcs.Find(npc.Id);
+                 if (savedNpc == null)
+                 {
+                     return Response.Fail<Npc>("Npc couldn't be created");
+                 }
+
+                 return Response.Ok(savedNpc);
+
+             }
+             catch (Exception e)
+             {
+                 return Response.Fail<Npc>(e.Message);
+
+             }
+        }
+
+        public Response<IReadOnlyList<Npc>> GetAllNpcs(RootContext context)
+        {
+            IReadOnlyList<Npc> npcs;
+            try
+            {
+                npcs = context.Npcs.ToList();
+                if (npcs == null)
+                {
+                    return Response.Fail<IReadOnlyList<Npc>>("Events not found");
+                }
+                return Response.Ok(npcs);
+            }
+            catch (Exception e)
+            {
+                return Response.Fail<IReadOnlyList<Npc>>(e.Message);
+
+            }
         }
 
     }

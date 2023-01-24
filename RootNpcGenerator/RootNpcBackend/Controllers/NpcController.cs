@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Http.Extensions;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RootNpcBackend.Data;
 using RootNpcBackend.Models;
 using RootNpcBackend.Services;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -31,18 +34,29 @@ namespace RootNpcBackend.Controllers
             return generatedNpc;
         }
 
-
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+        [Route("get/all")]
+        [HttpGet]
+        public ActionResult<Npc> GetAllNpc() {
+            var response = _generateNpcService.GetAllNpcs(_context);
+            if (response.Failure)
+            {
+                return BadRequest(response.Error);
+            }
+            return Ok(response.Value);
         }
 
-        // POST api/<ValuesController>
+
+        [Route("save/random")]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<Npc> SaveRandomNpc([FromBody] Npc npc)
         {
+            
+            var response = _generateNpcService.SaveRandomNpc(_context, npc);
+            if (response.Failure)
+            {
+                return BadRequest(response.Error);
+            }
+            return Ok(response.Value);
         }
 
         // DELETE api/<ValuesController>/5
