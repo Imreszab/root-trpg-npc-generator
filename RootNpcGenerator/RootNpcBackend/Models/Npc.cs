@@ -1,9 +1,10 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RootNpcBackend.Models
 {
     public class Npc
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
         public Race Race { get; set; }
