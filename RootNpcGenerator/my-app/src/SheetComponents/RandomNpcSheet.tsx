@@ -22,6 +22,9 @@ const RandomNpcSheet = () => {
 				},
 				body: JSON.stringify(npc),
 			});
+			if (response.ok) {
+				console.log(response);
+			}
 			if (!response.ok) throw Error("Did not receive expected data");
 		} catch (err) {
 			console.log(err);
