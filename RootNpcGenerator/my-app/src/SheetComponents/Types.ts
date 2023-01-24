@@ -44,6 +44,7 @@ export type NData = {
 }
 
 export type Npc = {
+    Id : number
     name: string,
     race: NData,
     age : NData,
@@ -57,6 +58,7 @@ export type Npc = {
 }
 
 export const starterNpc : Npc = {
+    Id: 0,
     name: "Béla",
     race: {
       id: 1,
