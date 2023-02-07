@@ -1,20 +1,21 @@
 import React from "react";
+import { Armor, Weapon } from "./Types";
 
-type ContentProps = { weaponName: string; armorName: string };
+type ContentProps = { weapon: Weapon; armor: Armor };
 
-const EquipmentSheet = ({ weaponName, armorName }: ContentProps) => {
+const EquipmentSheet = ({ weapon, armor }: ContentProps) => {
 	return (
 		<div className="card">
 			<h2 className="card-title"> Equipment</h2>
 			<label>
 				<h5>Weapon: </h5>
 			</label>
-			<span>{weaponName}</span>
+			<span>{weapon.name}</span>
 			<br />
 			<label>
 				<h5>Armor: </h5>
 			</label>
-			<span>{armorName}</span>
+			<span>{armor.name}</span>
 			<br />
 		</div>
 	);

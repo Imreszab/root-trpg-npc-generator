@@ -1,58 +1,124 @@
 
 export type NpcBase = {
     name: string,
-    race: Race,
-    age : Age,
-    gender : Gender,
-    faction : Faction
+    race: NData,
+    age : NData,
+    gender : NData,
+    faction : NData
   }
 export type NpcStats = {
+    injury : number,
+    exhaustion : number,
+    moral: number,
+}
+export type NpcTracker = {
     injury : number,
     exhaustion : number,
     wear : number,
     moral: number,
     damageInjury : number,
-    damageExhaustion : number,
+    damageExhaustion : number
 }
+
 export type Equipment = {
     weaponName: string,
     armorName: string,
 }
 
 export type Weapon = {
-    name :string,
+    id : number,
+    name : string,
     injury : number,
     exhaustion : number
 }
 
 export type Armor = {
+    id : number,
     name : string,
     wear: number,
 }
 
-export enum Faction {
-    Marquisate = "Marquisate",
-    EyrieDynasty = "Eyrie Dynasty",
-    WAlliance = "Woodland Alliance",
-    Local = "Local Denizen"
+export type NData = {
+    id : number,
+    name : string
 }
 
-export enum Gender {
-    Male = "He",
-    Female = "She",
-    Other = "They"
+export type Npc = {
+    Id : number
+    name: string,
+    race: NData,
+    age : NData,
+    gender : NData,
+    faction : NData,
+    weapon : Weapon,
+    armor : Armor,
+    injury : number,
+    exhaustion : number,
+    moral: number
 }
 
-export enum Race {
-    Rabbit = "Rabbit",
-    Mouse = "Mouse",
-    Fox = "Fox",
-    Cat = "Cat",
-    Bird = "Bird",
+export const starterNpc : Npc = {
+    Id: 0,
+    name: "Béla",
+    race: {
+      id: 1,
+      name: "Rabbit"
+    },
+    age: {
+      id: 3,
+      name: "MiddleAge"
+    },
+    gender: {
+      id: 3,
+      name: "Other"
+    },
+    faction: {
+      id: 4,
+      name: "Local Denizen"
+    },
+    weapon: {
+      id: 4,
+      name: "Greatsword",
+      injury: 2,
+      exhaustion: 0
+    },
+    armor: {
+      id: 3,
+      name: "Leather Vest",
+      wear: 2
+    },
+    injury: 1,
+    exhaustion: 1,
+    moral: 2
+  }
+
+// ContentProps for components
+
+export type StatProps = {
+	stats: NpcStats,
+	wear: number,
+    handleEdit: Function
+};
+export type SheetProps = {
+	props : NpcSheetProps
+};
+
+export type NpcSheetProps = {
+  pageName: string,
+	npc: Npc,
+  npcs? : Npc[],
+	handleFunction: Function,
+    handleSave: Function
 }
-export enum Age {
-    Child = "Child",
-    Young = "Young",
-    MiddleAge = "MiddleAge",
-    Elder = "Elder"
-}
+
+export type TrackerProps = {
+	tracker: NpcTracker
+};
+export type BasicInfoProps = { basicInfo: NpcBase, handleEdit : Function };
+
+
+/*export type RandomMenuProps = {
+  handleGenerate: Function;
+	pageName: string;
+	handleSave: Function;
+}*/
