@@ -1,4 +1,5 @@
 ﻿using Azure;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using RootNpcBackend.Data;
@@ -49,7 +50,9 @@ namespace RootNpcBackend.Services
         public Response<Npc> SaveRandomNpc(RootContext context, Npc npc)
         {
              try {
-                 context.Npcs.Add(npc);
+
+                npc = SetNpcData(context, npc);
+                context.Npcs.Add(npc);
                  context.SaveChanges();
                 var savedNpc = npc; //context.Npcs.Find(npc.Id);
                  if (savedNpc == null)
@@ -66,6 +69,31 @@ namespace RootNpcBackend.Services
 
              }
         }
+        public Npc SetNpcData(RootContext context, Npc npc)
+        {
+            var age = context.Ages.Find(npc.Age.Id);
+            npc.Age = age;
+            var armor = context.Armors.Find(npc.Armor.Id);
+            npc.Armor = armor;
+            var faction = context.Factions.Find(npc.Faction.Id);
+            npc.Faction = faction;
+            var gender = context.Genders.Find(npc.Gender.Id);
+            npc.Gender = gender;
+            var weapon = context.Weapons.Find(npc.Weapon.Id);
+            npc.Weapon = weapon;
+            var race = context.Races.Find(npc.Race.Id);
+            npc.Race = race;
+            return npc;
+        }
+        
+        public Response<Gender> SaveGender(RootContext context, Gender gender)
+        {
+            context.Genders.Add(gender);
+            context.SaveChanges();
+            return Response.Ok(gender);
+        }
+
+
 
         public Response<IReadOnlyList<Npc>> GetAllNpcs(RootContext context)
         {

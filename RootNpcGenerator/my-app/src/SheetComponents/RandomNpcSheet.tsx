@@ -1,12 +1,11 @@
 import React, { useRef } from "react";
 import NpcSheet from "./NpcSheet";
 import { useEffect, useState } from "react";
-import { Npc, starterNpc } from "./Types";
+import { Npc, NpcSheetProps, starterNpc } from "./Types";
 
 const RandomNpcSheet = () => {
 	const npc = useRef<Npc>(starterNpc);
 	const [generate, setGenerate] = useState<boolean>(false);
-	let pageName: string = "Generate Npc";
 
 	const handleGenerate = () => {
 		setGenerate(!generate);
@@ -29,6 +28,13 @@ const RandomNpcSheet = () => {
 		} catch (err) {
 			console.log(err);
 		}
+	};
+
+	const props: NpcSheetProps = {
+		pageName: "Generate Npc",
+		npc: npc.current,
+		handleFunction: handleGenerate,
+		handleSave: handleSave,
 	};
 
 	useEffect(() => {
@@ -55,12 +61,7 @@ const RandomNpcSheet = () => {
 
 	return (
 		<div>
-			<NpcSheet
-				pageName={pageName}
-				npc={npc.current}
-				handleGenerate={handleGenerate}
-				handleSave={handleSave}
-			/>
+			<NpcSheet props={props} />
 		</div>
 	);
 };

@@ -100,13 +100,25 @@ export type StatProps = {
     handleEdit: Function
 };
 export type SheetProps = {
-	pageName: string,
-	npc: Npc,
-	handleGenerate: Function,
-    handleSave: Function,
+	props : NpcSheetProps
 };
+
+export type NpcSheetProps = {
+  pageName: string,
+	npc: Npc,
+  npcs? : Npc[],
+	handleFunction: Function,
+    handleSave: Function
+}
 
 export type TrackerProps = {
 	tracker: NpcTracker
 };
 export type BasicInfoProps = { basicInfo: NpcBase, handleEdit : Function };
+
+
+/*export type RandomMenuProps = {
+  handleGenerate: Function;
+	pageName: string;
+	handleSave: Function;
+}*/

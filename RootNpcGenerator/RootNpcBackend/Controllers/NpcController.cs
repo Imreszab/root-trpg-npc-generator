@@ -46,7 +46,7 @@ namespace RootNpcBackend.Controllers
         }
 
 
-        [Route("save/random")]
+        [Route("save/randomnpc")]
         [HttpPost]
         public ActionResult<Npc> SaveRandomNpc([FromBody] Npc npc)
         {
@@ -58,6 +58,22 @@ namespace RootNpcBackend.Controllers
             }
             return Ok(response.Value);
         }
+
+
+
+        [Route("save/gender")]
+        [HttpPost]
+        public ActionResult<Npc> SaveGender([FromBody] Gender gender)
+        {
+
+            var response = _generateNpcService.SaveGender(_context, gender);
+            if (response.Failure)
+            {
+                return BadRequest(response.Error);
+            }
+            return Ok(response.Value);
+        }
+
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]

@@ -4,35 +4,30 @@ import BasicInfoSheet from "./BasicInfoSheet";
 import StatSheet from "./StatSheet";
 import EquipmentSheet from "./EquipmentSheet";
 import TrackerSheet from "./TrackerSheet";
-import { SheetProps, Npc, NpcTracker, NpcStats, NpcBase } from "./Types";
+import { SheetProps, NpcTracker, NpcStats, NpcBase } from "./Types";
 
 import PageMenu from "../SidebarComponents/PageMenu";
 
-const NpcSheet = ({
-	pageName,
-	npc,
-	handleGenerate,
-	handleSave,
-}: SheetProps) => {
+const NpcSheet = ({ props }: SheetProps) => {
 	let npcBase: NpcBase = {
-		name: npc.name,
-		race: npc.race,
-		age: npc.age,
-		gender: npc.gender,
-		faction: npc.faction,
+		name: props.npc.name,
+		race: props.npc.race,
+		age: props.npc.age,
+		gender: props.npc.gender,
+		faction: props.npc.faction,
 	};
 	let tracker: NpcTracker = {
-		injury: npc.injury,
-		exhaustion: npc.exhaustion,
-		wear: npc.armor.wear,
-		moral: npc.moral,
-		damageInjury: npc.weapon.injury,
-		damageExhaustion: npc.weapon.exhaustion,
+		injury: props.npc.injury,
+		exhaustion: props.npc.exhaustion,
+		wear: props.npc.armor.wear,
+		moral: props.npc.moral,
+		damageInjury: props.npc.weapon.injury,
+		damageExhaustion: props.npc.weapon.exhaustion,
 	};
 	let npcStats: NpcStats = {
-		injury: npc.injury,
-		exhaustion: npc.exhaustion,
-		moral: npc.moral,
+		injury: props.npc.injury,
+		exhaustion: props.npc.exhaustion,
+		moral: props.npc.moral,
 	};
 
 	const [editInput, setEditInput] = useState<boolean>(false);
@@ -73,11 +68,11 @@ const NpcSheet = ({
 
 	const saveEdit = (text: string, typeName: string, subName: string) => {
 		if (subName === "") {
-			(npc as any)[typeName] = text;
+			(props.npc as any)[typeName] = text;
 		} else {
-			(npc as any)[typeName][subName] = text;
+			(props.npc as any)[typeName][subName] = text;
 		}
-		console.log(npc);
+		console.log(props.npc);
 	};
 
 	return (
@@ -88,19 +83,15 @@ const NpcSheet = ({
 					<div className="grid-column-row">
 						<StatSheet
 							stats={npcStats}
-							wear={npc.armor.wear}
+							wear={props.npc.armor.wear}
 							handleEdit={handleEdit}
 						/>
-						<EquipmentSheet weapon={npc.weapon} armor={npc.armor} />
+						<EquipmentSheet weapon={props.npc.weapon} armor={props.npc.armor} />
 					</div>
 					<BasicInfoSheet basicInfo={npcBase} handleEdit={handleEdit} />
 				</div>
 			</div>
-			<PageMenu
-				handleGenerate={handleGenerate}
-				pageName={pageName}
-				handleSave={handleSave}
-			/>
+			<PageMenu props={props} />
 		</div>
 	);
 };
