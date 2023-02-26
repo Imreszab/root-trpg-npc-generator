@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./my-app
+    ports:
+      - "3001:3000"
+  backend:
+    build: ./RootNpcBackend
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: db
+      DB_PORT: 1433
+  db:
+      image: mcr.microsoft.com/mssql/server:2022-latest
+      ports:
+        - "1433:1433"
+      environment:
+      - Database=RootContext
+      - ACCEPT_EULA=Y
