@@ -1,10 +1,21 @@
+@font-face {
+    font-family: 'breathe_fireregular';
+    src: url('/public/fonts/webfontkit-20221209-075028/breathefire-65pg-webfont.woff2'),
+         url('/public/fonts/webfontkit-20221209-075028/breathefire-65pg-webfont.woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 .card{
     border: 5px double #000000;
+    box-shadow: 0px 0px 0px 8px rgba(0,0,0,0.3);
     width: fit-content;
     text-align: center;
     padding : 4%;
     margin-top: 10%;
     background-color: #c0ba96;
+    opacity: 0.8;
 }
 .sheet{
     margin-right: 10%;
@@ -24,6 +35,7 @@
 .grid-container-sheet{
     display:grid;
     grid-template-columns: auto 25%;
+    opacity: 0.75;
 }
 .grid-Column{
     display:grid;
@@ -51,4 +63,8 @@
 .card-title{
     margin-top: 0%;
     margin-bottom: 3%;
+    font-family: breathe_fireregular;
+    font: size 90px;
+    opacity: 1;
+    
 }
