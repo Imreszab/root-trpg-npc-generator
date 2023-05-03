@@ -11,12 +11,13 @@ use App\Models\Race;
 use App\Models\Weapon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Services\NameGeneratorService;
 
 
 class NpcRepository{
 
     public static function createNewNpc(){
-        $name = 'Bob';
+        $name = str_replace("_", " ", NameGeneratorService::getRandomName());
         $age = Age::inRandomOrder()->first();
         $armor = Armor::inRandomOrder()->first();
         $faction = Faction::inRandomOrder()->first();
@@ -38,6 +39,23 @@ class NpcRepository{
         ];
         $newNpc = new Npc($attributes);
         return $newNpc;
+    }
+
+    public static function saveNpc($npc){
+        $id=Db::table('npcs')->insertGetId([
+            'name' => $npc['name'],
+            'race' => $npc['race']['id'],
+            'age' => $npc['age']['id'],
+            'gender' => $npc['gender']['id'],
+            'faction' => $npc['faction']['id'],
+            'weapon' => $npc['weapon']['id'],
+            'armor' => $npc['armor']['id'],
+            'injury' => $npc['injury'],
+            'exhaustion' => $npc['exhaustion'],
+            'moral' => $npc['moral']
+        ]);
+
+        return $id;
     }
 
 }

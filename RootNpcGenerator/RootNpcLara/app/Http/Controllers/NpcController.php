@@ -12,11 +12,23 @@ class NpcController extends Controller
     {
         $newNpc = NpcRepository::createNewNpc();
         if ($newNpc == null) {
-            return response(["message"=>['Error!! Could not create Npc.']],Response::HTTP_NOT_FOUND);
+            return response(["message"=>['Error!! Could not create random npc.']],Response::HTTP_NOT_FOUND);
         }
        $response = [
            "message"=>$newNpc
        ];
        return response($response,Response::HTTP_CREATED);
+    }
+
+    function saveNewNpc(Request $request) : Response
+    {
+        if (!$request->has('npc') || $request->npc == null) {
+            return response(["message"=>['Error!! Could not save npc.']],Response::HTTP_NOT_FOUND);
+        }
+        $npcId = NpcRepository::saveNpc($request->npc);
+        $response = [
+           "message"=>$npcId
+        ];
+        return response($response,Response::HTTP_CREATED);
     }
 }
