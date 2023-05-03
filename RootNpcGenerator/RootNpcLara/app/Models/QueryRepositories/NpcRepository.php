@@ -23,7 +23,7 @@ class NpcRepository{
         $gender = Gender::inRandomOrder()->first();
         $race = Race::inRandomOrder()->first();
         $weapon = Weapon::inRandomOrder()->first();
-        $newNpc = [
+        $attributes = [
             'id' => 0,
             'name' => $name,
             'race'=> $race,
@@ -32,10 +32,12 @@ class NpcRepository{
             'faction' => $faction,
             'weapon' => $weapon,
             'armor' => $armor,
-            'injury' => rand(0, 4),
-            'exhaustion' => rand(0, 4),
-            'moral' => rand(0, 4)
+            'injury' => rand(1, 4),
+            'exhaustion' => rand(1, 4),
+            'moral' => rand(1, 4)
         ];
+        $newNpc = new Npc($attributes);
         return $newNpc;
     }
+
 }
