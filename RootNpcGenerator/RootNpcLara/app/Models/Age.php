@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ArmorModel extends Model
+class Age extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'wear'
+        'name'
     ];
 }
