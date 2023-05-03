@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('npc/create-random', [NpcController::class, 'generateRandomNpc']);
+Route::post('npc/save-new', [NpcController::class, 'saveNewNpc']);
