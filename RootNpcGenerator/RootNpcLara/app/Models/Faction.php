@@ -12,4 +12,8 @@ class Faction extends Model
     protected $fillable = [
         'name'
     ];
+
+    protected $hidden = [
+        'created_at'
+    ];
 }

@@ -13,4 +13,8 @@ class Armor extends Model
         'name',
         'wear'
     ];
+
+    protected $hidden = [
+        'created_at'
+    ];
 }

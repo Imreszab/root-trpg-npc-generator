@@ -14,4 +14,8 @@ class Weapon extends Model
         'injury',
         'exhaustion',
     ];
+
+    protected $hidden = [
+        'created_at'
+    ];
 }

@@ -12,4 +12,8 @@ class Age extends Model
     protected $fillable = [
         'name'
     ];
+
+    protected $hidden = [
+        'created_at'
+    ];
 }
