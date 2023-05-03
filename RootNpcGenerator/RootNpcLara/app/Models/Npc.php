@@ -22,7 +22,7 @@ class Npc extends Model
         'moral'
     ];
 
-    public function __construct(array $attributes)
+    public function __construct(array $attributes = array())
     {
         parent::__construct($attributes);
     }
