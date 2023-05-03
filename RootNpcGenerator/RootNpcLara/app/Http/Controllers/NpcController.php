@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\QueryRepositories\NpcRepository;
+use App\Models\Npc;
 
 class NpcController extends Controller
 {
@@ -31,4 +32,17 @@ class NpcController extends Controller
         ];
         return response($response,Response::HTTP_CREATED);
     }
+
+    function getAllNpc() : Response
+    {
+        $npcs = Npc::all();
+        if ($npcs == null) {
+            return response(["message"=>['Error!! Could not get npcs.']],Response::HTTP_NOT_FOUND);
+        }
+        $response = [
+           "message"=>$npcs
+        ];
+        return response($response,Response::HTTP_CREATED);
+    }
+
 }
