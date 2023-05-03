@@ -38,6 +38,7 @@ const NpcSheet = ({ props }: SheetProps) => {
 		typeName: string,
 		subName: string
 	) => {
+		console.log(props);
 		let new_text: string | null = text;
 
 		new_text = prompt("Change value", text);

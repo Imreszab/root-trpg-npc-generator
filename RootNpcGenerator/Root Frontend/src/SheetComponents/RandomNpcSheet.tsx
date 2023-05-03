@@ -12,7 +12,8 @@ const RandomNpcSheet = () => {
 	};
 
 	const handleSave = async () => {
-		let url: string = "https://localhost:7123/api/Npc/save/random";
+		let url: string =
+			"http://localhost/root-trpg-npc-generator/RootNpcGenerator/RootNpcLara/public/api/npc/save-new";
 		try {
 			const response: Response = await fetch(url, {
 				method: "POST",
@@ -39,7 +40,8 @@ const RandomNpcSheet = () => {
 
 	useEffect(() => {
 		const getNpc = async () => {
-			let url: string = "https://localhost:7123/api/Npc/generate/random";
+			let url: string =
+				"http://localhost/root-trpg-npc-generator/RootNpcGenerator/RootNpcLara/public/api/npc/create-random";
 			try {
 				const response: Response = await fetch(url, {
 					method: "GET",
@@ -48,7 +50,8 @@ const RandomNpcSheet = () => {
 					},
 				});
 				if (!response.ok) throw Error("Did not receive expected data");
-				npc.current = await response.json();
+				let message = await response.json();
+				npc.current = message.message;
 				console.log(npc.current);
 			} catch (err) {
 				console.log(err);

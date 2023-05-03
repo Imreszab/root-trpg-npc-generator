@@ -12,12 +12,13 @@ const LoadNpcSheet = () => {
 		selectedNpc.current = npcs.current[Id];
 		setSelect(!select);
 	};
-	const [hasNpcs, sethasNpcs] = useState<boolean>(false);
+	//const [hasNpcs, sethasNpcs] = useState<boolean>(false);
 
 	const handleSave = async () => {
 		//refactor for update needed
 
-		let url: string = "https://localhost:7123/api/Npc/save/random";
+		let url: string =
+			"http://localhost/root-trpg-npc-generator/RootNpcGenerator/RootNpcLara/public/api/npc/save-new";
 		try {
 			const response: Response = await fetch(url, {
 				method: "POST",
@@ -37,7 +38,8 @@ const LoadNpcSheet = () => {
 
 	useEffect(() => {
 		const getNpc = async () => {
-			let url: string = "https://localhost:7123/api/Npc/get/all";
+			let url: string =
+				"http://localhost/root-trpg-npc-generator/RootNpcGenerator/RootNpcLara/public/api/npc/get-all";
 			try {
 				const response: Response = await fetch(url, {
 					method: "GET",
@@ -46,7 +48,8 @@ const LoadNpcSheet = () => {
 					},
 				});
 				if (!response.ok) throw Error("Did not receive expected data");
-				npcs.current = await response.json();
+				let message = await response.json();
+				npcs.current = message.message;
 				console.log(npcs.current);
 			} catch (err) {
 				console.log(err);
@@ -70,7 +73,6 @@ const LoadNpcSheet = () => {
 			<NpcSheet props={props} />
 		</div>
 	);
-	return <></>;
 };
 
 export default LoadNpcSheet;
