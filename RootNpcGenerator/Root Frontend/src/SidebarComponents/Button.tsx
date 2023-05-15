@@ -18,7 +18,7 @@ const Button = ({ handleFunction, title, id }: ContentProps) => {
 	} else {
 		return (
 			<>
-				<button className="sub-btn" onClick={() => handleFunction(id)}>
+				<button className="sub-btn" onClick={() => handleFunction(id - 1)}>
 					{title}
 				</button>
 			</>

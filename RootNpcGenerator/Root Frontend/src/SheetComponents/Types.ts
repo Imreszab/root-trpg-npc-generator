@@ -106,9 +106,9 @@ export type SheetProps = {
 export type NpcSheetProps = {
   pageName: string,
 	npc: Npc,
-  npcs? : Npc[],
+  npcs : Npc[] | undefined,
 	handleFunction: Function,
-    handleSave: Function
+  handleSave: Function,
 }
 
 export type TrackerProps = {

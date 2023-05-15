@@ -3,10 +3,6 @@ import { SheetProps } from "../SheetComponents/Types";
 import Button from "./Button";
 
 const PageMenu = ({ props }: SheetProps) => {
-	const handleLog = () => {
-		console.log(props.npcs);
-	};
-
 	if (props.npcs === undefined) {
 		return (
 			<div className="sidebar-container">
@@ -27,11 +23,11 @@ const PageMenu = ({ props }: SheetProps) => {
 			<div className="sidebar-container">
 				<div className="sidebar-title"> {props.pageName}</div>
 				<div className="navbar">
-					<button onClick={() => handleLog()}>looog</button>
 					{props.npcs.map((npc) => {
 						return (
 							<>
 								<Button
+									key={npc.Id}
 									handleFunction={props.handleFunction}
 									title={npc.name}
 									id={npc.Id}

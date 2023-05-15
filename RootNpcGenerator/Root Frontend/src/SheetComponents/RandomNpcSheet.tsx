@@ -34,6 +34,7 @@ const RandomNpcSheet = () => {
 	const props: NpcSheetProps = {
 		pageName: "Generate Npc",
 		npc: npc.current,
+		npcs: undefined,
 		handleFunction: handleGenerate,
 		handleSave: handleSave,
 	};

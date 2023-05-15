@@ -68,8 +68,14 @@ const LoadNpcSheet = () => {
 		handleSave: handleSave,
 	};
 
+	const handleLog = () => {
+		console.log(props.npcs);
+		console.log(npcs.current);
+	};
+
 	return (
 		<div>
+			<button onClick={() => handleLog()}>loog 2</button>
 			<NpcSheet props={props} />
 		</div>
 	);
